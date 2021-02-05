@@ -1,6 +1,8 @@
+from typing import Reversible
 from django.db import models
 from django.contrib.auth.forms import User
 from django.utils import timezone
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -13,11 +15,20 @@ class Item(models.Model):
     place = models.ForeignKey('Place', related_name='item_place', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', related_name='item_category', on_delete=models.CASCADE)
     slug = models.SlugField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+       if not self.slug:
+           self.slug = slugify(self.name)
+       super(Item, self).save(*args, **kwargs) # Call the real save() method
+
     def __str__(self):
         return self.name
 
+    get_absolute_url(self):
+        return Reversible("model_detail", kwargs={"slug": self.slug})
     
 
+    
 class ItemImage(models.Model):
     item = models.ForeignKey('Item', related_name='item_images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='ItemImages/')

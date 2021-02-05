@@ -9,7 +9,6 @@ admin.site.register(ItemImage)
 admin.site.register(Place)
 admin.site.register(Category)
 admin.site.register(ItemReview)
-admin.site.register(Itembook
-)
+admin.site.register(Itembook)
 
 

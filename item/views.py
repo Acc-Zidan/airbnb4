@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from  django.views.generic import ListView ,  DetailView
+from .models import Item
 
 # Create your views here.
 
 
 class ItemList(ListView):
-    pass
+   model = Item
+
 ##filtter
 
 class ItemDetail(DetailView):
-    pass
+    model = Item
 
 ##book
