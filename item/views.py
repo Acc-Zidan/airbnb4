@@ -7,6 +7,7 @@ from .models import Item
 
 class ItemList(ListView):
    model = Item
+   paginate_by = 12
 
 ##filtter
 

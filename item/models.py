@@ -24,7 +24,7 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
-    get_absolute_url(self):
+    def get_absolute_url(self):
         return Reversible("model_detail", kwargs={"slug": self.slug})
     
 
